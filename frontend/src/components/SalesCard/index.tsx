@@ -5,6 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Sale } from '../../models/sale';
+import { BASE_URL } from '../../utils/request';
 
 
 export default function SalesCard() {
@@ -14,11 +15,20 @@ export default function SalesCard() {
 
     const [sales, setSales] = useState<Sale[]>([])
 
+    
+
     useEffect(() => {
-        axios.get('https://dsmeta-victormreis.herokuapp.com/sales').then(resp => {
+
+        const dmin = dataMin.toISOString().slice(0,10)
+        const dmax = dataMax.toISOString().slice(0,10)
+
+        console.log(dmin)
+
+
+        axios.get(`${BASE_URL}/sales?minDate=${dmin}&maxDate=${dmax}`).then(resp => {
             setSales(resp.data.content)
         })
-    }, [])
+    }, [dataMax, dataMin])
 
 
     return (
