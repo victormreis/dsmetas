@@ -2,13 +2,20 @@ import NotificationButton from '../NotificationButton';
 import './styles.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 
 export default function SalesCard() {
 
     const [dataMin, setDataMin] = useState(new Date());
     const [dataMax, setDataMax] = useState(new Date());
+
+    useEffect(() =>{
+        axios.get('https://dsmeta-victormreis.herokuapp.com/sales').then(resp => {
+            console.log(resp.data)
+        })
+    },[])
 
 
     return (
@@ -32,7 +39,7 @@ export default function SalesCard() {
                     />
                 </div>
             </div>
-
+        
             <div>
                 <table className="dsmeta-sales-table">
                     <thead>
