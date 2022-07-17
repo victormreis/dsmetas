@@ -10,7 +10,9 @@ import { BASE_URL } from '../../utils/request';
 
 export default function SalesCard() {
 
-    const [dataMin, setDataMin] = useState(new Date());
+    const min = new Date(new Date().setDate(new Date().getDate() - 365));
+
+    const [dataMin, setDataMin] = useState(min);
     const [dataMax, setDataMax] = useState(new Date());
 
     const [sales, setSales] = useState<Sale[]>([])
