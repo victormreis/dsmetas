@@ -22,7 +22,7 @@ export default function SalesCard() {
         const dmin = dataMin.toISOString().slice(0,10)
         const dmax = dataMax.toISOString().slice(0,10)
 
-        console.log(dmin)
+        console.log(dataMin)
 
 
         axios.get(`${BASE_URL}/sales?minDate=${dmin}&maxDate=${dmax}`).then(resp => {
